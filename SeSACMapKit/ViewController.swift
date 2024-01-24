@@ -17,25 +17,22 @@ enum TheaterName: String {
 }
 
 class ViewController: UIViewController {
-    let list = TheaterList().mapAnnotations
-    
+
 	@IBOutlet var currentLocationButton: UIButton!
     @IBOutlet var mapView: MKMapView!
 	
+	let list = TheaterList().mapAnnotations
 	let locationManager = CLLocationManager() //2. 위치매니저 생성
+	var currentLocation = CLLocationCoordinate2D(latitude: 37.654165, longitude: 127.049696)
+	var currentLocationName = "창동 씨드큐브"
     
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		let rightButton = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButtonClicked))
-		navigationItem.rightBarButtonItem = rightButton
-		currentLocationButton.configuration = .currentLocationStyle()
-		
 		//4. 부하 소환 (프로토콜 연결)
 		locationManager.delegate = self
 
-		showTotalTheater()
-		
+		configureView()
 		checkDeviceLocationAuthorization()
 	}
 	
@@ -53,6 +50,12 @@ class ViewController: UIViewController {
 
 
 extension ViewController {
+	func configureView() {
+		let rightButton = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButtonClicked))
+		navigationItem.rightBarButtonItem = rightButton
+		currentLocationButton.configuration = .currentLocationStyle()
+	}
+	
 	func showLocationSettingAlert() {
 		let alert = UIAlertController(title: "위치 정보 이용", message: "위치 서비스를 이용할 수 없습니다. 설정을 변경해주세요.", preferredStyle: .alert)
 		
@@ -104,7 +107,7 @@ extension ViewController {
 	
 	func showTotalTheater() {
 		self.mapView.removeAnnotations(self.mapView.annotations)
-		
+			addAnnotation(coordinate: currentLocation, title: currentLocationName)
 		for i in 0...self.list.count - 1 {
 			let coordinate = CLLocationCoordinate2D(latitude: self.list[i].latitude, longitude: self.list[i].longitude)
 			addAnnotation(coordinate: coordinate, title: self.list[i].location)
@@ -113,7 +116,7 @@ extension ViewController {
 	
 	func showFilterTheater(theater: String) {
 		self.mapView.removeAnnotations(self.mapView.annotations)
-		
+
 		if theater == TheaterName.total.rawValue {
 			showTotalTheater()
 		} else {
@@ -122,6 +125,7 @@ extension ViewController {
 					
 					let coordinate = CLLocationCoordinate2D(latitude: self.list[i].latitude, longitude: self.list[i].longitude)
 					addAnnotation(coordinate: coordinate, title: self.list[i].location)
+
 				}
 			}
 		}
@@ -201,8 +205,11 @@ extension ViewController: CLLocationManagerDelegate {
 	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		if let location = locations.last?.coordinate {
-			setRegionAndAnnontation(center: location)
-			addAnnotation(coordinate: location, title: "내 위치")
+			currentLocation = location
+			currentLocationName = "내 위치"
+			setRegionAndAnnontation(center: currentLocation)
+			addAnnotation(coordinate: currentLocation, title: currentLocationName)
+			showTotalTheater()
 		}
 		
 		locationManager.stopUpdatingLocation()
@@ -212,11 +219,9 @@ extension ViewController: CLLocationManagerDelegate {
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 		//37.654165, 127.049696 씨드큐브 창동
 		
-		print("거부했어")
-		let seedCube = CLLocationCoordinate2D(latitude: 37.654165, longitude: 127.049696)
-		
-		setRegionAndAnnontation(center: seedCube)
-		addAnnotation(coordinate: seedCube, title: "창동 씨드큐브")
+		setRegionAndAnnontation(center: currentLocation)
+		addAnnotation(coordinate: currentLocation, title: currentLocationName)
+		showTotalTheater()
 	}
 	
 	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
