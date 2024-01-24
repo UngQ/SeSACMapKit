@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,41 +19,69 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0O-Lt-4WW">
-                                <rect key="frame" x="0.0" y="134" width="393" height="684"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lSY-Wf-JVa">
-                                <rect key="frame" x="0.0" y="103" width="393" height="32"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfs-ly-WgG">
+                                <rect key="frame" x="345" y="770" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fpW-YT-U31"/>
+                                    <constraint firstAttribute="width" constant="40" id="l3v-bO-9QK"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <buttonConfiguration key="configuration" style="plain" image="location.circle.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="changeSegmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="6UU-x5-UZt"/>
+                                    <action selector="currentLocationButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pLr-rt-GNi"/>
                                 </connections>
-                            </segmentedControl>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="k0O-Lt-4WW" firstAttribute="top" secondItem="lSY-Wf-JVa" secondAttribute="bottom" id="1fd-VP-RWp"/>
-                            <constraint firstItem="lSY-Wf-JVa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="74r-A0-Nhp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="k0O-Lt-4WW" secondAttribute="trailing" id="KkZ-dg-YeZ"/>
-                            <constraint firstItem="lSY-Wf-JVa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="XBc-DX-1V1"/>
-                            <constraint firstItem="k0O-Lt-4WW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Y3Y-SJ-mjC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lSY-Wf-JVa" secondAttribute="trailing" id="tVB-Lo-w8Z"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="k0O-Lt-4WW" secondAttribute="bottom" id="ugt-kd-Enh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Zfs-ly-WgG" secondAttribute="bottom" constant="8" id="Iq1-8A-jMj"/>
+                            <constraint firstItem="k0O-Lt-4WW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="T1x-AT-q03"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zfs-ly-WgG" secondAttribute="trailing" constant="8" id="Ti1-hb-zfO"/>
+                            <constraint firstItem="k0O-Lt-4WW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="WhM-xD-xRg"/>
+                            <constraint firstItem="k0O-Lt-4WW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dsV-7K-NYB"/>
+                            <constraint firstItem="k0O-Lt-4WW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kji-HB-MZ4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="UT2-XE-jts"/>
+                    <navigationItem key="navigationItem" id="UT2-XE-jts">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="currentLocationButton" destination="Zfs-ly-WgG" id="WzK-cs-nYA"/>
                         <outlet property="mapView" destination="k0O-Lt-4WW" id="r9r-ZO-jJX"/>
-                        <outlet property="segmentedControl" destination="lSY-Wf-JVa" id="dLN-Vd-DTj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057.2519083969464" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="-27.464788732394368"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yRr-3J-qtl">
+            <objects>
+                <viewController id="ChT-jx-LFz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uxT-xF-9Cq">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5My-aw-fUc">
+                                <rect key="frame" x="185" y="419" width="112" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="location.square" catalog="system" symbolScale="small"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CkW-jC-gpq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ltE-R1-hWw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="663.35877862595419" y="661.97183098591552"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="al6-1z-WdQ">
@@ -74,6 +103,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="location.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="location.square" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

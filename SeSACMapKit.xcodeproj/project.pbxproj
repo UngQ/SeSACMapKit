@@ -14,6 +14,7 @@
 		A5034DED2B551DDC00C6A7AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5034DEC2B551DDC00C6A7AE /* Assets.xcassets */; };
 		A5034DF02B551DDC00C6A7AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5034DEE2B551DDC00C6A7AE /* LaunchScreen.storyboard */; };
 		A5034DF82B551E2200C6A7AE /* TheaterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5034DF72B551E2200C6A7AE /* TheaterData.swift */; };
+		A5EC54042B60FBBA00AD5429 /* UIButton+Exetension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC54032B60FBBA00AD5429 /* UIButton+Exetension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A5034DEF2B551DDC00C6A7AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5034DF12B551DDC00C6A7AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5034DF72B551E2200C6A7AE /* TheaterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterData.swift; sourceTree = "<group>"; };
+		A5EC54032B60FBBA00AD5429 /* UIButton+Exetension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Exetension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				A5034DEC2B551DDC00C6A7AE /* Assets.xcassets */,
 				A5034DEE2B551DDC00C6A7AE /* LaunchScreen.storyboard */,
 				A5034DF12B551DDC00C6A7AE /* Info.plist */,
+				A5EC54032B60FBBA00AD5429 /* UIButton+Exetension.swift */,
 			);
 			path = SeSACMapKit;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5EC54042B60FBBA00AD5429 /* UIButton+Exetension.swift in Sources */,
 				A5034DE82B551DD900C6A7AE /* ViewController.swift in Sources */,
 				A5034DE42B551DD900C6A7AE /* AppDelegate.swift in Sources */,
 				A5034DE62B551DD900C6A7AE /* SceneDelegate.swift in Sources */,
